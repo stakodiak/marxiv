@@ -89,7 +89,7 @@ def download_arxiv_source(arxiv_id: str, output_dir: str) -> str | None:
 
 
 def convert_to_markdown(
-        source_file: str, working_dir: str, output_file: str = '', output_format: str = "md"
+        source_file: str, working_dir: str, output_file: str = '', output_format: str = "gfm"
 ) -> None:
     """Convert LaTeX file to Markdown using Pandoc
 
@@ -98,7 +98,7 @@ def convert_to_markdown(
       output_file: Path for output file
       output_format (optional): Use format besides Markdown
     """
-    args = ["pandoc", "-s", source_file, "-t", output_format ]
+    args = ["pandoc", "-s", source_file, "-t", output_format, "--wrap=none"]
     if output_file:
         destination = os.path.join(os.getcwd(), output_file)
         args += ["-o", destination]
